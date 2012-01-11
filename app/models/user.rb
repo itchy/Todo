@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   # validates :email, :uniqueness => true 
-  validates :sms_number, :format => { :with => /\A[(]*([0-9]){3}[)-\. ]*([0-9]{3})[-\.]*([0-9]{4})\Z/i, :on => :create, :message => "Phone Number is invalid"}
+  validates :sms_number, :format => { :with => /^\+.[0-9]{9,10}$/i, :on => :create, :message => "Phone Number is invalid"}
   validates :password, :presence => true, :on => :create
   
   def display_name
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
   
   def create_task(body)
-    if body[/^\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z$/i]
+    if body[/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i]
       # if the total content of the text is an email address, update the users email address
       self.email = body
       self.save
@@ -40,8 +40,9 @@ class User < ActiveRecord::Base
         Rails.logger.info "creator.save"
         creator
       else
-        Rails.logger.info "else"
-        Rails.logger.error "Error creating new user: #{creator.message}"
+        creator.errors.full_messages.each do |msg|
+          Rails.logger.info msg
+        end  
         User.first
       end 
       rescue
