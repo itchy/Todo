@@ -12,7 +12,7 @@
 	<%= form_for :user, :url => session_login_path, :html => { :class => "html5", :id => "login_form", "accept-charset" => "utf-8"} do  |f| %>
 		<div id="errors" class="error" >
 			<!-- This is a place holder DIV where any error messages about this form will be placed -->
-			<%= (render 'error', {:error => flash[:login_error]}) if flash[:login_error] %>
+			<%= (render '/application/error', {:error => flash[:login_error]}) if flash[:login_error] %>
 		</div>
 		<label id="email">Email</label><label id="password">Password</label><br/>
 		<%= f.text_field :email, :placeholder => "email", %>
