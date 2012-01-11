@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
     end
     
     def find_or_create_by_sms_number(number)
-      creator = self.find_by_sms_number(number) || User.new({:sms_number => number, :password => 'leclerk', :email => "unknown@sample.com"}) 
+      creator = self.find_by_sms_number(number) || User.new({:sms_number => number, :password => 'leclerk', :email => "unknown@sample.com"})
+      creator if creator.save
     end
   end  
 end
