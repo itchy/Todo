@@ -34,14 +34,18 @@ class User < ActiveRecord::Base
     end
     
     def find_or_create_by_sms_number(number)
+      Rails.logger.info "User.find_or_create_gy_sms(#{number})"
       creator = self.find_by_sms_number(number) || User.new({:sms_number => number, :password => 'leclerk', :email => "unknown@sample.com"})
       if creator.save
+        Rails.logger.info "creator.save"
         creator
       else
+        Rails.logger.info "else"
         Rails.logger.error "Error creating new user: #{creator.message}"
         User.first
       end 
-      rescue 
+      rescue
+        Rails.logger.info "rescue" 
         User.first 
     end
   end  
