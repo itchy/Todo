@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :on => :create
   
   def display_name
-    "#{first_name} #{last_name}"
+    if first_name && last_name
+      "#{first_name} #{last_name}"
+    else
+      "#{sms_number}"
+    end  
   end
   
   def create_task(body)
@@ -19,7 +23,7 @@ class User < ActiveRecord::Base
       self.email = body
       self.save
     else
-      task = tasks.new({:status => "Open", :description => body}) 
+      task = self.tasks.new({:status => "Open", :description => body}) 
       task.save 
     end
   end
