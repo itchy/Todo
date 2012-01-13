@@ -1,0 +1,7 @@
+david:
+  id: 1 
+  first_name: David  
+  last_name: Jones
+  sms_number: '+12146680255'
+  email: david.jones@email.com
+  password_digest: $2a$10$DCuBAcQr38PdvrCHvQYIX.cvNMWApP/05stR9/jzEpQV1UYED2qd.

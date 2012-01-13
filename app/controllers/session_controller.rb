@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   
   def login
     if params[:user] && params[:user][:email]
-      user = User.find_by_email(params[:user][:email])
+      user = User.where("email ilike ?", params[:user][:email]).first
     end
     
     if user && user.authenticate(params[:user][:password])
