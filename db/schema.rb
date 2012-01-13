@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111054710) do
+ActiveRecord::Schema.define(:version => 20120113060128) do
 
   create_table "sessions", :force => true do |t|
     t.datetime "created_at"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120111054710) do
     t.string   "sms_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "active",          :default => 1
   end
 
 end

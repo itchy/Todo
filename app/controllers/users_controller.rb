@@ -2,12 +2,11 @@ class UsersController < ApplicationController
   before_filter :authenticate
 
   def index
-    # @users = User.all
+    @users = User.unscoped.all
   end
 
   def show
     @user = User.find(params[:id])
-    @auth_box_url = BoxNet.new.auth_url
   end
 
   # GET /users/new
@@ -62,11 +61,8 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :ok }
-    end
+    @user.active = 0
+    @user.save
+    redirect_to users_url
   end
 end
