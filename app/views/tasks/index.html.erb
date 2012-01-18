@@ -1,5 +1,12 @@
 <h1>Listing tasks</h1>
 
+<%= link_to 'Any', tasks_path(:show => 'active') %> |
+<%= link_to 'Active', tasks_path(:show => 'active') %> |
+<%= link_to 'Open', tasks_path(:show => 'open') %> |
+<%= link_to 'Pending', tasks_path(:show => 'pending') %> |
+<%= link_to 'Closed', tasks_path(:show => 'closed') %>
+<br /><br />
+
 <table>
   <tr>
     <th>Created By</th>
@@ -22,8 +29,10 @@
   </tr>
 <% end %>
 </table>
-
+<br />
+<%= will_paginate @tasks %>
 <br />
 
-<%= link_to 'New Task', new_task_path %> |
-<%= link_to 'Users', users_path %>
+<%= link_to 'Users', users_path %> |
+<%= link_to 'New Task', new_task_path %> 
+

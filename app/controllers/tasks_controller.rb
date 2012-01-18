@@ -3,11 +3,11 @@ class TasksController < ApplicationController
   
   def index
     show = params[:show] || nil
-    if show and show[/all|open|pending|closed|active/i]
-      @tasks = Task.send show.to_sym
+    if show and show[/any|open|pending|closed|active/i]
+      @tasks = Task.send(show.to_sym).paginate(:page => params[:page])
     else  
-     @tasks = Task.active
-    end 
+     @tasks = Task.active.paginate(:page => params[:page])
+    end
   end
   
   def show
@@ -65,4 +65,5 @@ class TasksController < ApplicationController
     @task.save
     redirect_to tasks_url
   end
+  
 end
