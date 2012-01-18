@@ -5,7 +5,11 @@ Todo::Application.routes.draw do
   match 'session/login' => 'session#login'
   match 'session/logout' => 'session#logout'
   resources :users
-  resources :tasks
+  resources :tasks do
+    member do
+      put 'close'
+    end
+  end    
   
   match 'public/' => 'public#index'
   match '/sms' => 'public#sms', :via => [:get, :post]

@@ -2,7 +2,12 @@ class TasksController < ApplicationController
   before_filter :authenticate
   
   def index
-    @tasks = Task.all
+    show = params[:show] || nil
+    if show and show[/all|open|pending|closed|active/i]
+      @tasks = Task.send show.to_sym
+    else  
+     @tasks = Task.active
+    end 
   end
   
   def show
@@ -23,7 +28,8 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      flash[:notice] = 'Task was successfully created.'
+      redirect_to action: "index" 
     else
       render action: "new"
     end
@@ -39,11 +45,24 @@ class TasksController < ApplicationController
       render action: "edit" 
     end
   end
+  
+  # PUT /tasks/1/close
+  def close
+    @task = Task.find(params[:id])
+    
+    # format this for AJAX 
+    if @task.update_attributes(:status => "Closed")
+      redirect_to action: "index", show: params[:show]
+    else
+      render action: "index" 
+    end
+  end
 
   # DELETE /tasks/1
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
+    @task.active = 0
+    @task.save
     redirect_to tasks_url
   end
 end
