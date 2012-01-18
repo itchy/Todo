@@ -9,7 +9,8 @@ Todo::Application.routes.draw do
   
   match 'public/' => 'public#index'
   match '/sms' => 'public#sms', :via => [:get, :post]
-
+  match '/email' => 'public#email', :via => [:get, :post]
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

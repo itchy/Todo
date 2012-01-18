@@ -29,5 +29,10 @@ class PublicController < ApplicationController
     end 
   rescue
     render :text => "Invalid Params #{params.inspect}"
-  end  
+  end 
+  
+  def email
+    Rails.logger.info params.inspect
+    render :text => "Params #{params.inspect}"
+  end 
 end
