@@ -35,6 +35,7 @@ class PublicController < ApplicationController
   def email
     Rails.logger.info params.inspect
     creator = User.find_or_create_by_email(params[:from])
+    body = params[:text]
     creator.create_task(body)
     unless creator.valid?
       Rails.logger.error creator.message
