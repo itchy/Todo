@@ -1,13 +1,13 @@
 <h1>Listing tasks</h1>
 
-<%= link_to 'Any', tasks_path(:show => 'active') %> |
+<%= link_to 'Any', tasks_path(:show => 'any') %> |
 <%= link_to 'Active', tasks_path(:show => 'active') %> |
 <%= link_to 'Open', tasks_path(:show => 'open') %> |
 <%= link_to 'Pending', tasks_path(:show => 'pending') %> |
 <%= link_to 'Closed', tasks_path(:show => 'closed') %>
 <br /><br />
 
-<table>
+<table id="tasks">
   <tr>
     <th>Created By</th>
     <th>Status</th>
@@ -18,17 +18,11 @@
   </tr>
 
 <% @tasks.each do |task| %>
-  <tr>
-    <td><%= link_to task.user.display_name, task.user %></td>
-    <td><%= task.status %></td>
-    <td><%= task.description %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, confirm: 'Are you sure?', method: :delete %></td>
-		<td><%= link_to 'Close', close_task_path(:id => task.id, :show => params[:show]), method: :put %></td>
-  </tr>
+	<%= render :partial => 'task_row', :locals => { :task => task } %>
 <% end %>
 </table>
+<br />
+<%= render 'inline_form' %>
 <br />
 <%= will_paginate @tasks %>
 <br />

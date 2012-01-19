@@ -1,0 +1,27 @@
+<%= form_for(@task, :remote => true, :html => {:id => "task_form"}) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :new_task %><br />
+    <%= f.text_field :description, :id => "new_task_description" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Task", :id => "new_task" %>
+  </div>
+<% end %>

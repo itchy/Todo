@@ -8,6 +8,8 @@ class TasksController < ApplicationController
     else  
      @tasks = Task.active.paginate(:page => params[:page])
     end
+    @task = current_user.tasks.build
+    @task.status = 'Open'
   end
   
   def show
@@ -29,7 +31,11 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:notice] = 'Task was successfully created.'
-      redirect_to action: "index" 
+      respond_to do |format|
+        format.html { redirect_to action: "index" }
+        format.js
+      end
+       
     else
       render action: "new"
     end
