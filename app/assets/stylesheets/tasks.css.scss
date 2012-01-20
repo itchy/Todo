@@ -2,11 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.filter a.selected {
+  background-color: #DDE;
+}
 
 table#tasks {
   border-collapse: collapse;
+  width: 800px;
+  th {
+    text-align: left;
+    height: 32px;
+    font-size: 24px;
+  }
+  th.created_by {
+    width: 170px;
+  }
+  th.status {
+    width: 100px;
+  }
+  th.close {
+    width: 50px;
+  }
+  tr.even {
+      background-color: #DDE;
+  }
+  tr.odd {
+      background-color: #EEF;
+  }
+  td {
+    height: 28px;
+    font-size: 16px;
+  }  
 }
 
-form #new_task_description {
-  font-size: 2em;
+div#pagination {
+  margin: 20px 0px;
+  text-align: center;
+  font-size: 1.3em;
 }
+
+form#task_form {
+  margin-bottom: 60px;
+  #new_task_description {
+    font-size: 2em;
+  }
+}
+

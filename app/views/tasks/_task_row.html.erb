@@ -1,10 +1,6 @@
-<%# fail instance_variables.inspect %>
-<tr>
+<tr <%= "id=task_#{task.id} class='row #{cycle 'odd', 'even'}'" %> >
   <td><%= link_to task.user.display_name, task.user %></td>
   <td><%= task.status %></td>
-  <td><%= task.description %></td>
-  <td><%= link_to 'Show', task %></td>
-  <td><%= link_to 'Edit', edit_task_path(task) %></td>
-  <td><%= link_to 'Destroy', task, confirm: 'Are you sure?', method: :delete %></td>
-	<td><%= link_to 'Close', close_task_path(:id => task.id, :show => params[:show]), method: :put %></td>
+  <td><%= link_to truncate(task.description,:length => 55), edit_task_path(task) %></td>
+	<td><%= link_to 'Close', close_task_path(:id => task.id, :show => params[:show]), method: :put, :remote => true %></td>
 </tr>

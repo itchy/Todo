@@ -8,14 +8,15 @@
 
 
 div.container_16{
-  border: solid 3px #2D5781;
-  background-color: #68CAFC;
+  border: solid 3px #BBC;
+  background-color: #EEF;
 }
 
 div#header {
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #2D5781;
+  background-color: #BBC; /* 2D5781 */
+  
 }
 
 div#action{
@@ -28,7 +29,7 @@ div#main {
 }
 
 div#footer {
-  background-color: #2D5781;;
+  background-color: #BBC;
 }
 
 /* DEMO GREEN BTN */
@@ -62,4 +63,22 @@ input[type=submit]#new_task:active {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
   -moz-border-radius:10px;
   border-radius: 10px;
+}
+
+/*  UL */
+ul.tabs {
+  list-style-type: none;
+  li {
+    display: inline;
+    padding: 5px;
+    a {
+      color: black;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 4px;
+    }
+    a:hover {
+      color: white;
+    }
+  }  
 }

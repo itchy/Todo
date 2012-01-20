@@ -2,9 +2,10 @@
 
 
 // $('#tasks').prepend('<%#= escape_javascript(render(@task)) %>');
-// $('#tasks > tr:first').effect('highlight', {}, 3000);
 
 $('#tasks tr:first').after("<%= escape_javascript(render(:partial => 'task_row', :locals => {:task => @task})) %>");
-$('#tasks tr:nth-child(2)').animate({'backgroundColor' : '#CC99CC'}, 1000).delay(1000).animate({'backgroundColor' : '#FFF'}, 1000);
-
+$('#tasks tr:nth-child(2)').animate({'backgroundColor' : '#CC99CC'}, 1000).delay(500).animate({'backgroundColor' : '#DDE'}, 1000);
 $('#task_form')[0].reset();
+
+$('#tasks tr.row:odd').animate({'backgroundColor' : '#DDE'}, 500);
+$('#tasks tr.row:even').animate({'backgroundColor' : '#EEF'}, 500);

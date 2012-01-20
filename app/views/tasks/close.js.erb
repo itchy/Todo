@@ -1,0 +1,6 @@
+
+
+$('#tasks <%="tr#task_#{@task.id}" %>').fadeOut(400).remove();
+
+$('#tasks tr.row:odd').animate({'backgroundColor' : '#DDE'}, 500);
+$('#tasks tr.row:even').animate({'backgroundColor' : '#EEF'}, 500);

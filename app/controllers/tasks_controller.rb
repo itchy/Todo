@@ -2,9 +2,9 @@ class TasksController < ApplicationController
   before_filter :authenticate
   
   def index
-    show = params[:show] || nil
-    if show and show[/any|open|pending|closed|active/i]
-      @tasks = Task.send(show.to_sym).paginate(:page => params[:page])
+    @show = params[:show] || 'active'
+    if @show and @show[/any|open|pending|closed|active/i]
+      @tasks = Task.send(@show.to_sym).paginate(:page => params[:page])
     else  
      @tasks = Task.active.paginate(:page => params[:page])
     end
@@ -58,7 +58,10 @@ class TasksController < ApplicationController
     
     # format this for AJAX 
     if @task.update_attributes(:status => "Closed")
-      redirect_to action: "index", show: params[:show]
+      respond_to do |format|
+        format.html { redirect_to action: "index", show: params[:show] }
+        format.js 
+      end  
     else
       render action: "index" 
     end
