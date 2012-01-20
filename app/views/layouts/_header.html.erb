@@ -3,9 +3,11 @@
 		<h1><%= "Tasks" %></h1>
 	</div>
 	<div class="grid_11 omega">
-		<ul id="nav" class="tabs">
-			<li><%= link_to 'Tasks', tasks_path %></li>
-			<li><%= link_to 'Users', users_path %></li>
-		</ul>
+		<% if current_user %>
+			<ul id="nav" class="tabs">
+				<li><%= link_to 'Tasks', tasks_path %></li>
+				<li><%= link_to 'Users', users_path %></li>
+			</ul>
+		<% else %>
 	</div>
 </div>
