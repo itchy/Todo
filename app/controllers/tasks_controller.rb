@@ -12,6 +12,10 @@ class TasksController < ApplicationController
     @task.status = 'Open'
   end
   
+  def jindex
+    @tasks = Task.open
+  end
+  
   def show
     @task = Task.find(params[:id])
   end
@@ -31,11 +35,15 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:notice] = 'Task was successfully created.'
-      respond_to do |format|
-        format.html { redirect_to action: "index" }
-        format.js
-      end
-       
+      # respond_to do |format|
+      #   format.html { redirect_to action: "index" }
+      #   format.js 
+      # end
+      if request.xhr
+        render(:partial => 'task_row', :locals => {:task => @task})  
+      else
+        redirect_to action: "index"
+      end    
     else
       render action: "new"
     end

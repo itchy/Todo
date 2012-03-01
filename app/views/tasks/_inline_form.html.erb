@@ -1,4 +1,4 @@
-<%= form_for(@task, :remote => true, :html => {:id => "task_form"}) do |f| %>
+<%= form_for(@task, :remote => true, :html => {:id => "task_form", :'data-type' => "html"}) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>

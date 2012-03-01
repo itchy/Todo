@@ -9,6 +9,9 @@ Todo::Application.routes.draw do
     member do
       put 'close'
     end
+    collection do
+      get 'jindex'
+    end
   end    
   
   match 'public/' => 'public#index'
