@@ -1,30 +1,52 @@
-<%= form_for(@task) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> /Task</legend>
 
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="control-group">
+      <%= f.label :user_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :user_id, :class => 'number_field' %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :created_by %><br />
-    <%= f.select :user_id, User.select_user %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.select :status, Task.select_status %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
+    <div class="control-group">
+      <%= f.label :assigned, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :assigned, :class => 'number_field' %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="control-group">
+      <%= f.label :status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :status, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'text_area' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :finished_at, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.datetime_select :finished_at, :class => 'datetime_select' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :active, :class => 'number_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', tasks_path, :class => 'btn' %>
+    </div>
+  </fieldset>
 <% end %>

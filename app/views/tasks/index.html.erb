@@ -1,34 +1,26 @@
-<div class="grid_2">
-	<h3>Sort by:</h3>
-</div>
-<div class="grid_8 filter">
-	<h3>
-	<%= link_to 'Any', tasks_path(:show => 'any'), :class => @show == 'any'? 'selected' : '' %> |
-	<%= link_to 'Active', tasks_path(:show => 'active'), :class => @show == 'active'? 'selected' : '' %> |
-	<%= link_to 'Open', tasks_path(:show => 'open'), :class => @show == 'open'? 'selected' : '' %> |
-	<%= link_to 'Pending', tasks_path(:show => 'pending'), :class => @show == 'pending'? 'selected' : '' %> |
-	<%= link_to 'Closed', tasks_path(:show => 'closed'), :class => @show == 'closed'? 'selected' : '' %>
-	</h3>
-</div>
-
-<table id="tasks">
-  <tr>
-    <th class="created_by">Created By</th>
-    <th class="status">Status</th>
-    <th class="description">Description</th>
-    <th class="close"></th>
-  </tr>
-
-	<% @tasks.each do |task| %>
-		<%= render :partial => 'task_row', :locals => { :task => task } %>
-	<% end %>
+<h1>Tasks</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.id %></td>
+        <td><%= link_to task.user_id, task_path(task) %></td>
+        <td><%= task.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', task_path(task), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<div id="pagination">
-	<%= will_paginate @tasks %>
-</div>	
-
-<%= render 'inline_form' %>
-
-
-
+<%= link_to 'New', new_task_path, :class => 'btn btn-primary' %>
