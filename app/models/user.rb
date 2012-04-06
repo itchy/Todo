@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   
   has_many :tasks
+  has_many :items
   default_scope where(:active => 1)
   
   

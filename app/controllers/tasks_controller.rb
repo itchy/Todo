@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
   
   def jindex
-    @tasks = Task.open
+    
   end
   
   def show

@@ -1,5 +1,6 @@
 Todo::Application.routes.draw do
-  root :to => 'public#index'
+  # root :to => 'public#index'
+  root :to => 'tasks#jindex'
   match 'session/register' => 'session#register'
   match 'session/create' => 'session#create'
   match 'session/login' => 'session#login'
@@ -11,9 +12,11 @@ Todo::Application.routes.draw do
     end
     collection do
       get 'jindex'
-    end
+    end  
   end    
-  
+  scope "api" do 
+    resources :items
+  end
   match 'public/' => 'public#index'
   match '/sms' => 'public#sms', :via => [:get, :post]
   match '/email' => 'public#email', :via => [:get, :post]

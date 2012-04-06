@@ -1,0 +1,7 @@
+<h1>Items</h1>
+<form id="new_item">
+	<input type="text" name="description" id="new_item_description">
+	<input type="submit" value="Add">
+</form>
+
+<ul id="items"></ul>
