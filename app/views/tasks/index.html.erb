@@ -1,5 +1,15 @@
+<div id="filter-form" class="span11">
+	<h3 class="pull-left">Sort by:&nbsp;</h3>
+	<div class="btn-group">
+		<%= link_to 'Any', tasks_path(:show => 'any'), :class => "btn #{'btn-inverse' if @show == 'any'}" %>
+		<%= link_to 'Active', tasks_path(:show => 'active'), :class => "btn #{'btn-inverse' if @show == 'active'}" %>
+		<%= link_to 'Open', tasks_path(:show => 'open'), :class => "btn #{'btn-inverse' if @show == 'open'}" %>
+		<%= link_to 'Pending', tasks_path(:show => 'pending'), :class => "btn #{'btn-inverse' if @show == 'pending'}" %>
+		<%= link_to 'Closed', tasks_path(:show => 'closed'), :class => "btn #{'btn-inverse' if @show == 'closed'}" %>
+	</div>	
+</div>
 
-<table class="table table-striped">
+<table id="tasks" class="table table-striped">
   <thead>
     <tr>
       <th>Submitted by</th>
@@ -9,20 +19,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.user.display_name, task.user %></td>
-        <td><%= task.status %></td>
-        <td><%= link_to truncate(task.description,:length => 75), edit_task_path(task) %></td>
-        <td>
-          <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-mini' %>
-          <%= link_to 'Close', close_task_path(task), :method => :put, :class => 'btn btn-mini btn-success' %>
-        </td>
-      </tr>
-    <% end %>
+		<%= render :partial => "task_row", :collection => @tasks, :as => :task %>
   </tbody>
 </table>
 
 <%= render :partial => 'inline_form' %>
-<br />
+
 <%= will_paginate @tasks %>
