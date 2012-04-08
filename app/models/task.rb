@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   
   default_scope where(:active => 1).order("created_at DESC")
   
-  self.per_page = 5
+  self.per_page = 10
     
   class << self
     def select_status

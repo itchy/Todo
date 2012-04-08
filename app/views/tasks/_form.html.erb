@@ -1,46 +1,36 @@
 <%= form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> /Task</legend>
+		<% if @task.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
+	      <ul>
+	      <% @task.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	
     <div class="control-group">
       <%= f.label :user_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.number_field :user_id, :class => 'number_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :assigned, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :assigned, :class => 'number_field' %>
+				<%= f.select :user_id, User.select_user, :class => 'text_field' %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :status, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :status, :class => 'text_field' %>
+				<%= f.select :status, Task.select_status, :class => 'text_field' %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :description, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_area :description, :class => 'text_area' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :finished_at, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.datetime_select :finished_at, :class => 'datetime_select' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :active, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :active, :class => 'number_field' %>
+        <%= f.text_area :description, :class => 'text_area span8' %>
       </div>
     </div>
 

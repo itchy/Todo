@@ -24,7 +24,8 @@
 				</div>
 			<% end -%>	
 			<% if flash[:notice]%>	
-				<div class="span3 alert alert-info">	
+				<div class="span9 offset1 alert alert-info ">
+					<a class="close" data-dismiss="alert">×</a>	
 					<%= (render 'layouts/notice', {:notice => flash[:notice]}) %>
 				</div>
 			<% end -%>
