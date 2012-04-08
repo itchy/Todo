@@ -10,6 +10,7 @@ gem 'pg'
 gem 'twilio-ruby'
 gem 'rest-client'
 gem 'will_paginate', '~>3.0.2'
+gem 'bootstrap-will_paginate', '~>0.0.7'
 
 # Gems used only for assets and not required
 # in production environments by default.

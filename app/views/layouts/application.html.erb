@@ -17,11 +17,17 @@
 				<%= render 'layouts/header' %>
 			</div>	
 		</div>	
-		<div id="flash_error" class="row">
-			<div class="span12">	
-				<%= (render 'layouts/error', {:error => flash[:error]}) if flash[:error] %>	
-				<%= (render 'layouts/notice', {:notice => flash[:notice]}) if flash[:notice] %>
-			</div>
+		<div id="flash_error" class=" row">
+			<% if flash[:error]%>
+				<div class="container span11 alert alert-error">	
+					<%= (render 'layouts/error', {:error => flash[:error]}) %>	
+				</div>
+			<% end -%>	
+			<% if flash[:notice]%>	
+				<div class="span3 alert alert-info">	
+					<%= (render 'layouts/notice', {:notice => flash[:notice]}) %>
+				</div>
+			<% end -%>
 		</div>
 		<div id="main"  class="row">
 			<div class="span12">

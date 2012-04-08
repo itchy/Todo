@@ -10,7 +10,7 @@ class SessionController < ApplicationController
       set_current_user(user)
       redirect_to tasks_path
     else
-      flash[:login_error] = "Invalid email/password combination!"
+      flash[:error] = "Invalid email/password combination!"
       redirect_to "/"
     end      
   end

@@ -1,26 +1,28 @@
-<h1>Tasks</h1>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>User</th>
-      <th>Created at</th>
+      <th>Submitted by</th>
+      <th>Status</th>
+      <th class='wide'>Description</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.id %></td>
-        <td><%= link_to task.user_id, task_path(task) %></td>
-        <td><%= task.created_at %></td>
+        <td><%= link_to task.user.display_name, task.user %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to truncate(task.description,:length => 75), edit_task_path(task) %></td>
         <td>
           <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', task_path(task), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Close', close_task_path(task), :method => :put, :class => 'btn btn-mini btn-success' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_task_path, :class => 'btn btn-primary' %>
+<%= render :partial => 'inline_form' %>
+<br />
+<%= will_paginate @tasks %>

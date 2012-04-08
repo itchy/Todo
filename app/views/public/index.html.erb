@@ -20,8 +20,8 @@
 			</div>	
 		</div>	
 		<div class="span12 hidden-phone">
-			<%= f.text_field :email, :class => 'text_field', :placeholder => :email %>
-			<%= f.text_field :password, :class => 'password_field', :placeholder => :password %>
+			<%= f.text_field :email, :class => 'text_field', :placeholder => :email, :type => :email %>
+			<%= f.text_field :password, :class => 'password_field', :placeholder => :password, :type => :password %>
 			<%= f.submit :login, :class => 'btn btn-primary' %>
 		</div>	
 	<% end %>
