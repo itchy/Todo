@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-		<%= render :partial => "task_row", :collection => @tasks, :as => :task %>
+		<%= render :partial => "task_row", :collection => @tasks, :as => :task, :locals => {:html_class => ''} %>
   </tbody>
 </table>
 

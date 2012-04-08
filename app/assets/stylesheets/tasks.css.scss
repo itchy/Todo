@@ -2,9 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.navbar .non-responsive ul.nav {
+.navbar .non-responsive ul.non-nav {
+  list-style-type: none;
   a {
-    padding: 10px 11px;
+    padding: 1px 11px;
     line-height: 19px;
     color: #999;
     text-decoration: none;

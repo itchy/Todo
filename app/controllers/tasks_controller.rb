@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     
     if @task.save
-      flash[:notice] = 'Task was successfully created.'
+      # flash[:notice] = 'Task was successfully created.'
       respond_to do |format|
         format.html { redirect_to action: "index" }
         format.js

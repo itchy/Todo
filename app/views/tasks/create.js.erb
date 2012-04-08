@@ -3,9 +3,10 @@
 
 // $('#tasks').prepend('<%#= escape_javascript(render(@task)) %>');
 
-$('#tasks tr:first').after("<%= escape_javascript(render(:partial => 'task_row', :locals => {:task => @task})) %>");
-$('#tasks tr:nth-child(2)').animate({'backgroundColor' : '#CC99CC'}, 1000).delay(500).animate({'backgroundColor' : '#DDE'}, 1000);
+$('#tasks tr:first').after("<%= escape_javascript(render(:partial => 'task_row', :locals => {:task => @task, :html_class => 'new'})) %>");
+$('#tasks tr.new').animate({'backgroundColor' : '#D9EDF7'}, 700).delay(100).animate({'backgroundColor' : '#FFF'}, 700);
 $('#task_form')[0].reset();
+$('#tasks tr').removeClass('new');
 
-$('#tasks tr.row:odd').animate({'backgroundColor' : '#DDE'}, 500);
-$('#tasks tr.row:even').animate({'backgroundColor' : '#EEF'}, 500);
+// $('#tasks tr.row:odd').animate({'backgroundColor' : '#DDE'}, 500);
+// $('#tasks tr.row:even').animate({'backgroundColor' : '#EEF'}, 500);

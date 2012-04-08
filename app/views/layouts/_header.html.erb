@@ -4,7 +4,7 @@
       <a class="brand" href="#">To Do's</a>
 			<div class="non-responsive">
 				<% if current_user %>
-					<ul id="nav" class="nav">
+					<ul id="nav" class="non-nav">
 						<li><%= link_to 'Tasks', tasks_path, :class => (current_page?(:controller => :tasks ) ? 'current' : '') %></li>
 						<li><%= link_to 'Users', users_path, :class => (current_page?(:controller => :users ) ? 'current' : '') %></li>
 						<li><%= link_to 'Log Out', session_logout_path, :class => 'pull-right' %></li>
