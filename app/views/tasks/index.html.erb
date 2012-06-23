@@ -1,34 +1,28 @@
-<div class="grid_2">
-	<h3>Sort by:</h3>
-</div>
-<div class="grid_8 filter">
-	<h3>
-	<%= link_to 'Any', tasks_path(:show => 'any'), :class => @show == 'any'? 'selected' : '' %> |
-	<%= link_to 'Active', tasks_path(:show => 'active'), :class => @show == 'active'? 'selected' : '' %> |
-	<%= link_to 'Open', tasks_path(:show => 'open'), :class => @show == 'open'? 'selected' : '' %> |
-	<%= link_to 'Pending', tasks_path(:show => 'pending'), :class => @show == 'pending'? 'selected' : '' %> |
-	<%= link_to 'Closed', tasks_path(:show => 'closed'), :class => @show == 'closed'? 'selected' : '' %>
-	</h3>
+<div id="filter-form" class="span11">
+	<h3 class="pull-left">Sort by:&nbsp;</h3>
+	<div class="btn-group">
+		<%= link_to 'Any', tasks_path(:show => 'any'), :class => "btn #{'btn-inverse' if @show == 'any'}" %>
+		<%= link_to 'Active', tasks_path(:show => 'active'), :class => "btn #{'btn-inverse' if @show == 'active'}" %>
+		<%= link_to 'Open', tasks_path(:show => 'open'), :class => "btn #{'btn-inverse' if @show == 'open'}" %>
+		<%= link_to 'Pending', tasks_path(:show => 'pending'), :class => "btn #{'btn-inverse' if @show == 'pending'}" %>
+		<%= link_to 'Closed', tasks_path(:show => 'closed'), :class => "btn #{'btn-inverse' if @show == 'closed'}" %>
+	</div>	
 </div>
 
-<table id="tasks">
-  <tr>
-    <th class="created_by">Created By</th>
-    <th class="status">Status</th>
-    <th class="description">Description</th>
-    <th class="close"></th>
-  </tr>
-
-	<% @tasks.each do |task| %>
-		<%= render :partial => 'task_row', :locals => { :task => task } %>
-	<% end %>
+<table id="tasks" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Submitted by</th>
+      <th>Status</th>
+      <th class='wide'>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+		<%= render :partial => "task_row", :collection => @tasks, :as => :task, :locals => {:html_class => ''} %>
+  </tbody>
 </table>
 
-<div id="pagination">
-	<%= will_paginate @tasks %>
-</div>	
+<%= render :partial => 'inline_form' %>
 
-<%= render 'inline_form' %>
-
-
-
+<%= will_paginate @tasks %>

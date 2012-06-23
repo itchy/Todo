@@ -1,14 +1,18 @@
-<div id="header">
-	<div class="grid_4 prefix_1">
-		<h1><%= "Tasks" %></h1>
-	</div>
-	<div class="grid_11 omega">
-		<% if current_user %>
-			<ul id="nav" class="tabs">
-				<li><%= link_to 'Tasks', tasks_path %></li>
-				<li><%= link_to 'Users', users_path %></li>
-				<li><%= link_to 'Log Out', session_logout_path %></li>
-			</ul>
-		<% end %>
-	</div>
+<div id="header" class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">To Do's</a>
+			<div class="non-responsive">
+				<% if current_user %>
+					<ul id="nav" class="non-nav">
+						<li><%= link_to 'Tasks', tasks_path, :class => (current_page?(:controller => :tasks ) ? 'current' : '') %></li>
+						<li><%= link_to 'Users', users_path, :class => (current_page?(:controller => :users ) ? 'current' : '') %></li>
+						<li><%= link_to 'Log Out', session_logout_path, :class => 'pull-right' %></li>
+					</ul>
+				<% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+

@@ -1,4 +1,4 @@
-<%= form_for(@task, :remote => true, :html => {:id => "task_form"}) do |f| %>
+<%= form_for(@task, :remote => true, :html => {:id => "task_form", :class => "well form-inline"}) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -12,12 +12,9 @@
   <% end %>
 	<%= f.hidden_field :user_id %>
   <%= f.hidden_field :status %>
-	<%= f.label :new_task %><br />
-	<div class="grid_7">
-    <%= f.text_field :description, :id => "new_task_description" %>
-	</div>
-	<div class="grid_3">
-    <%= f.submit "Add Task", :id => "new_task" %>
-	</div>
+	
+  <%= f.text_field :description, :id => "new_task_description", :class => "span10" %>
+	<%= f.submit "Add Task", :id => "new_task", :class => "btn-primary" %>
+  
 	
 <% end %>

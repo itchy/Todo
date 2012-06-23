@@ -5,80 +5,17 @@
  *= require_self
  *= require_tree . 
 */
-
-
-div.container_16{
-  border: solid 3px #BBC;
-  background-color: #EEF;
-}
-
-div#header {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: #BBC; /* 2D5781 */
-  
-}
-
-div#action{
- 
-}
-
-div#main {
-  
-
-}
-
 div#footer {
-  background-color: #BBC;
+  margin-top: 20px;
+  padding-top: 5px;
+  border-top: solid 1px #CCC;
 }
 
-/* DEMO GREEN BTN */
-input[type=submit]#new_task {
-  width: 200px;
-  color: #e8f0de;
-  height: 40px;
-  font-size: 2em;
-  border:solid 1px #538312; 
-  background:#64991e; 
-  background:-webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e)); 
-  background:-moz-linear-gradient(top, #7db72f, #4e7d0e); 
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
-  -moz-border-radius:10px;
-  border-radius: 10px;
-}
-input[type=submit]#new_task:hover {
-  width: 200px;
-  background: #538018; 
-  background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c)); 
-  background:-moz-linear-gradient(top,  #6b9d28, #436b0c); 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
-  -moz-border-radius:10px;
-  border-radius: 10px;
-}
-input[type=submit]#new_task:active {
-  width: 200px;
-  color:#a9c08c; 
-  background:-webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f)); 
-  background:-moz-linear-gradient(top,  #4e7d0e,  #7db72f); 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
-  -moz-border-radius:10px;
-  border-radius: 10px;
-}
-
-/*  UL */
-ul.tabs {
-  list-style-type: none;
-  li {
-    display: inline;
-    padding: 5px;
-    a {
-      color: black;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 4px;
-    }
-    a:hover {
-      color: white;
-    }
+form#login_form {
+  input {
+    margin-bottom: 10px;
   }  
+}
+div#login, div#intro {
+  margin-left: 10px;
 }

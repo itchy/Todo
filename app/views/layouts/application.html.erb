@@ -2,32 +2,45 @@
 <html>
 <head>
   <title>Todo</title>
+	<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container_16">
-		<div id="header" class="grid_16 alpha">
-			<%= render 'layouts/header' %>
-		</div>
-		<div id="action" class="grid_3">
-			<%#= render 'layouts/action' %>
+	<div class="container">
+		<div id="header" class="row">
+			<div class="span12">
+				<%= render 'layouts/header' %>
+			</div>	
 		</div>	
-		<div id="flash_error" class="grid_9 prefix_2 suffix_2">	
-			<%= (render 'layouts/error', {:error => flash[:error]}) if flash[:error] %>
+		<div id="flash_error" class=" row">
+			<% if flash[:error]%>
+				<div class="container span11 alert alert-error">	
+					<%= (render 'layouts/error', {:error => flash[:error]}) %>	
+				</div>
+			<% end -%>	
+			<% if flash[:notice]%>	
+				<div class="span9 offset1 alert alert-info ">
+					<a class="close" data-dismiss="alert">×</a>	
+					<%= (render 'layouts/notice', {:notice => flash[:notice]}) %>
+				</div>
+			<% end -%>
 		</div>
-		<div id="flash_notice" class="grid_9 prefix_2 suffix_2">	
-			<%= (render 'layouts/notice', {:notice => flash[:notice]}) if flash[:notice] %>
-		</div>
-		<div id="main"  class="grid_12 prefix_1 omega">
-			<%= yield %>
+		<div id="main"  class="row">
+			<div class="span12">
+				<%= yield %>
+			</div>	
 		</div>
 		<div class="clear"></div>			
-		<div id="footer" class="grid_16">
-			<%= render 'layouts/footer' %>
+		<div id="footer" class="row">
+			<div class="span12">
+				<%= render 'layouts/footer' %>
+			</div>
 		</div>
-		<div class="clear"></div>
 	</div>
 </body>
 </html>
