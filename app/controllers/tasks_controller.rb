@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_filter :authenticate
+  before_filter :scope_task_to_user_lists, :except => [:index] 
   
   def index
     @show = params[:show] || 'active'
@@ -13,7 +14,7 @@ class TasksController < ApplicationController
   end
   
   def show
-    @task = Task.find(params[:id])
+
   end
 
   def new
@@ -22,13 +23,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = Task.find(params[:id])
+
   end
 
   # POST /tasks
   def create
-    @task = Task.new(params[:task])
-    
     if @task.save
       flash[:notice] = 'Task was successfully created.'
       respond_to do |format|
@@ -43,8 +42,6 @@ class TasksController < ApplicationController
 
   # PUT /tasks/1
   def update
-    @task = Task.find(params[:id])
-
     if @task.update_attributes(params[:task])
       flash[:notice] = 'Task was successfully updated.'
       redirect_to action: :index
@@ -54,9 +51,7 @@ class TasksController < ApplicationController
   end
   
   # PUT /tasks/1/close
-  def close
-    @task = Task.find(params[:id])
-    
+  def close    
     # format this for AJAX 
     if @task.update_attributes(:status => "Closed")
       respond_to do |format|
@@ -70,10 +65,15 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1
   def destroy
-    @task = Task.find(params[:id])
     @task.active = 0
     @task.save
     redirect_to tasks_url
   end
-  
+
+private
+  def scope_task_to_user_lists
+    # right now the tasks are not scoped to any list, basically there is only one list
+    # but it will be important to fix this once multiple lists are available
+    @task = Task.find(params[:id])
+  end  
 end
