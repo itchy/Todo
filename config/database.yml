@@ -1,6 +1,6 @@
 common: &common
   adapter: postgresql
-  username: scott
+  username: postgres
   password:  # from psql setup, see Postgresql
 
 development:

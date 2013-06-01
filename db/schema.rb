@@ -11,22 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301163347) do
-
-  create_table "items", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assigned"
-    t.string   "status"
-    t.integer  "active",      :default => 1
-    t.text     "description"
-    t.datetime "finished_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120118214405) do
 
   create_table "sessions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tasks", :force => true do |t|
@@ -35,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20120301163347) do
     t.string   "status"
     t.text     "description"
     t.datetime "finished_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "active",      :default => 1
   end
 
@@ -46,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20120301163347) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "sms_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "active",          :default => 1
   end
 

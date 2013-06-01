@@ -5,7 +5,7 @@ class SessionController < ApplicationController
     if params[:user] && params[:user][:email]
       user = User.where("email ilike ?", params[:user][:email]).first
     end
-    
+
     if user && user.authenticate(params[:user][:password])
       set_current_user(user)
       redirect_to tasks_path
